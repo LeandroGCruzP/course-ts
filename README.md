@@ -4,6 +4,7 @@
 - [Class 271: Type any](#class-271-type-any)
 - [Class 272: Type void](#class-272-type-void)
 - [Class 273: Type object](#class-273-type-object)
+- [Class 274: Type array](#class-274-type-array)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -128,3 +129,31 @@ console.log('ObjectB', ObjectB)
 | Prefix    | Description
 |:----------|:-----------
 |*readonly* | Does not allow to change a value
+
+## Class 274: Type array
+
+```ts
+function multiplyArgs(...args: Array<number>): number {
+  return args.reduce((acc, value) => acc * value, 1)
+}
+
+console.log(multiplyArgs(1, 2, 3))
+```
+
+#### *Other example*
+```ts
+function concatenateStrings(...args: string[]): string {
+  return args.reduce((acc, value) => acc + ' ' + value)
+}
+
+console.log(concatenateStrings('Leandro', 'Cruz'))
+```
+
+#### *Other example*
+```ts
+function toUpperCase(...args: string[]): string[] {
+  return args.map((value) => value.toUpperCase())
+}
+
+console.log(toUpperCase('a', 'b', 'c'))
+```
