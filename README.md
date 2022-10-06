@@ -74,7 +74,7 @@ withoutReturn('Leandro', 'Cruz')
 ```
 | Type  | Return
 |:------|:------
-|*any*  | without return
+|*void*  | without return
 
 #### *Other example*
 ```ts
