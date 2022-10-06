@@ -3,17 +3,10 @@
 - [Class 270: Type annotation](#class-270-type-annotation)
 - [Class 271: Type any](#class-271-type-any)
 - [Class 272: Type void](#class-272-type-void)
+- [Class 273: Type object](#class-273-type-object)
 
 ## Class 270: Type annotation
 ### *Basic types*
-> Type inference occurs here
-```ts
-let name: string = 'Leandro'
-let age: number = 25
-let adult: boolean = true
-let symbol: symbol = Symbol('any-symbol')
-let big: bigint = 10n
-```
 | Type     | Value
 |:---------|:------
 |*string*  | '' "" ``
@@ -21,6 +14,15 @@ let big: bigint = 10n
 |*boolean* | true or false
 |*symbol*  | symbol
 |*bigint*  | bigint
+
+> ℹ️ Type inference occurs here
+```ts
+let name: string = 'Leandro'
+let age: number = 25
+let adult: boolean = true
+let symbol: symbol = Symbol('any-symbol')
+let big: bigint = 10n
+```
 
 ### *Array*
 ```ts
@@ -48,23 +50,27 @@ const sum2: (x:number, y:number) => number = (x, y) => x + y
 ```
 
 ## Class 271: Type any
-> Use any as a last resort
-```ts
-function showMessage(msg: any) {
-    return msg
-}
-```
+> ⚠️ Use any as a last resort
+
 | Type  | Value
 |:------|:------
 |*any*  | * all values
 
 ```ts
+function showMessage(msg: any) {
+    return msg
+}
+
 console.log(showMessage([1, 2, 3]))
 console.log(showMessage('Hi'))
 console.log(showMessage(1))
 ```
 
 ## Class 272: Type void
+| Type  | Return
+|:------|:------
+|*void*  | without return
+
 ```ts
 function withoutReturn(...args: string[]): void {
     console.log(args.join(' '))
@@ -72,9 +78,6 @@ function withoutReturn(...args: string[]): void {
 
 withoutReturn('Leandro', 'Cruz')
 ```
-| Type  | Return
-|:------|:------
-|*void*  | without return
 
 #### *Other example*
 ```ts
@@ -89,3 +92,39 @@ const person = {
 
 person.displayName()
 ```
+
+## Class 273: Type object
+> ℹ️ Object does not have autocomplete
+```ts
+const ObjectA: Record<string, unknown> = {
+  keyA: 'value A',
+  keyB: 'value B',
+}
+
+ObjectA.keyA = 'other value A'
+ObjectA.keyC = 'new value'
+
+console.log('ObjectA', ObjectA)
+```
+
+> ℹ️ Object with autocomplete
+```ts
+const ObjectB: {
+  readonly keyA: string
+  keyB: string
+  [key: string]: unknown
+} = {
+  keyA: 'value A',
+  keyB: 'value B',
+}
+
+// ObjectB.keyA = 'other value' * ERROR
+ObjectB.keyB = 'other value B'
+ObjectB.keyC = 'new value'
+
+console.log('ObjectB', ObjectB)
+```
+
+| Prefix    | Description
+|:----------|:-----------
+|*readonly* | Does not allow to change a value
