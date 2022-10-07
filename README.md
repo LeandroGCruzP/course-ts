@@ -119,7 +119,7 @@ const ObjectB: {
   keyB: 'value B',
 }
 
-// ObjectB.keyA = 'other value' * ERROR
+// ObjectB.keyA = 'other value' // ! ERROR: readonly
 ObjectB.keyB = 'other value B'
 ObjectB.keyC = 'new value'
 
@@ -156,4 +156,16 @@ function toUpperCase(...args: string[]): string[] {
 }
 
 console.log(toUpperCase('a', 'b', 'c'))
+```
+
+### *Array with readonly*
+```ts
+const fullName1: readonly string[] = ['Alexandra', 'Laroca']
+const fullName2: ReadonlyArray<string> = ['Alexandra', 'Laroca']
+
+// fullName1[0] = 'Leandro' // ! ERROR: readonly
+// fullName2[1] = 'Cruz' // ! ERROR: readonly
+
+console.log(fullName1)
+console.log(fullName2)
 ```
