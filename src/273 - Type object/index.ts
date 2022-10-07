@@ -19,7 +19,7 @@ const ObjectB: {
   keyB: 'value B',
 }
 
-// ObjectB.keyA = 'other value' * ERROR: readonly does not allow to change a value
+// ObjectB.keyA = 'other value' // ! ERROR: readonly does not allow to change a value
 ObjectB.keyB = 'other value B'
 ObjectB.keyC = 'new value'
 

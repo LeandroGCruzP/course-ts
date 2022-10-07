@@ -5,16 +5,17 @@
 - [Class 272: Type void](#class-272-type-void)
 - [Class 273: Type object](#class-273-type-object)
 - [Class 274: Type array](#class-274-type-array)
+- [Class 275: Type tuple](#class-275-type-tuple)
 
 ## Class 270: Type annotation
 ### *Basic types*
 | Type     | Value
 |:---------|:------
-|*string*  | '' "" ``
-|*number*  | 10, 1.57, -5.55, 0xf00d (hexadecimal), 0b1010 (binary), 0o7744 (octal)
-|*boolean* | true or false
-|*symbol*  | symbol
-|*bigint*  | bigint
+|***string***  | '' "" ``
+|***number***  | 10, 1.57, -5.55, 0xf00d (hexadecimal), 0b1010 (binary), 0o7744 (octal)
+|***boolean*** | true or false
+|***symbol***  | symbol
+|***bigint***  | bigint
 
 > ℹ️ Type inference occurs here
 ```ts
@@ -55,7 +56,7 @@ const sum2: (x:number, y:number) => number = (x, y) => x + y
 
 | Type  | Value
 |:------|:------
-|*any*  | * all values
+|***any***  | Accept any values
 
 ```ts
 function showMessage(msg: any) {
@@ -70,7 +71,7 @@ console.log(showMessage(1))
 ## Class 272: Type void
 | Type  | Return
 |:------|:------
-|*void*  | without return
+|***void***  | without return
 
 ```ts
 function withoutReturn(...args: string[]): void {
@@ -80,7 +81,7 @@ function withoutReturn(...args: string[]): void {
 withoutReturn('Leandro', 'Cruz')
 ```
 
-#### *Other example*
+> *Other example*
 ```ts
 const person = {
     name: 'Alexandra',
@@ -128,10 +129,9 @@ console.log('ObjectB', ObjectB)
 
 | Prefix    | Description
 |:----------|:-----------
-|*readonly* | Does not allow to change a value
+|***readonly*** | Does not allow changing the value of an object or array
 
 ## Class 274: Type array
-
 ```ts
 function multiplyArgs(...args: Array<number>): number {
   return args.reduce((acc, value) => acc * value, 1)
@@ -140,7 +140,7 @@ function multiplyArgs(...args: Array<number>): number {
 console.log(multiplyArgs(1, 2, 3))
 ```
 
-#### *Other example*
+> *Other example*
 ```ts
 function concatenateStrings(...args: string[]): string {
   return args.reduce((acc, value) => acc + ' ' + value)
@@ -149,7 +149,7 @@ function concatenateStrings(...args: string[]): string {
 console.log(concatenateStrings('Leandro', 'Cruz'))
 ```
 
-#### *Other example*
+> *Other example*
 ```ts
 function toUpperCase(...args: string[]): string[] {
   return args.map((value) => value.toUpperCase())
@@ -168,4 +168,37 @@ const fullName2: ReadonlyArray<string> = ['Alexandra', 'Laroca']
 
 console.log(fullName1)
 console.log(fullName2)
+```
+
+## Class 275: Type tuple
+```ts
+const clientData1: [number, string] = [1, 'Alexandra']
+
+clientData1[0] = 100
+
+console.log(clientData1)
+```
+> *Other example*: Immutable tuple
+```ts
+const clientData2: readonly [number, string, string] = [2, 'Alexandra', 'Laroca']
+
+// clientData1[0] = 100 // ! ERROR: readonly
+// clientData1.pop() // ! ERROR: readonly
+// clientData1.push('Laroca') // ! ERROR: readonly
+
+console.log(clientData2)
+```
+
+> *Other example*: Conditional argument
+```ts
+const clientData3: [number, string, string?] = [3, 'Alexandra']
+
+console.log(clientData3)
+```
+
+> *Other example*: Array
+```ts
+const clientData4: [number, ...string[]] = [3, 'Alexandra', 'Laroca']
+
+console.log(clientData4)
 ```

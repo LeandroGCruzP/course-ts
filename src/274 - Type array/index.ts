@@ -17,8 +17,8 @@ console.log(toUpperCase('a', 'b', 'c'))
 const fullName1: readonly string[] = ['Alexandra', 'Laroca']
 const fullName2: ReadonlyArray<string> = ['Alexandra', 'Laroca']
 
-// fullName1[0] = 'Leandro' // ! ERROR: readonly
-// fullName2[1] = 'Cruz' // ! ERROR: readonly
+// fullName1[0] = 'Leandro' // ! ERROR: readonly does not allow to change a value
+// fullName2[1] = 'Cruz' // ! ERROR: readonly does not allow to change a value
 
 console.log(fullName1)
 console.log(fullName2)
