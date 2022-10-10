@@ -6,6 +6,7 @@
 - [Class 273: Type object](#class-273-type-object)
 - [Class 274: Type array](#class-274-type-array)
 - [Class 275: Type tuple](#class-275-type-tuple)
+- [Class 276: Type null and undefined](#class-276-type-null-and-undefined)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -201,4 +202,49 @@ console.log(clientData3)
 const clientData4: [number, ...string[]] = [3, 'Alexandra', 'Laroca']
 
 console.log(clientData4)
+```
+
+## Class 276: Type null and undefined
+### *Undefined*
+```ts
+let x
+if (typeof x === 'undefined') x = 10 // Validation
+
+console.log(x * 2)
+```
+
+> *Other example*: Function with parameter string or undefined
+```ts
+function createPerson(
+  firstName: string,
+  lastName?: string,
+): {
+  firstName: string
+  lastName?: string
+} {
+  return {
+    firstName,
+    lastName,
+  }
+}
+
+console.log(createPerson('Leandro'))
+console.log(createPerson('Leandro', 'Cruz'))
+```
+
+### *Null*
+```ts
+function squareOf(x: any) {
+  if (typeof x === 'number') return x * x // Validation
+
+  return null
+}
+
+const squareOfTwoNumber = squareOf(2)
+
+if (squareOfTwoNumber === null) {
+  console.log('Invalid calculation')
+} else {
+  console.log(squareOfTwoNumber)
+}
 ```
