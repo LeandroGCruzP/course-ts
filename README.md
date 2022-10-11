@@ -10,6 +10,7 @@
 - [Class 277: Type never](#class-277-type-never)
 - [Class 278: Type enum](#class-278-type-enum)
 - [Class 279: Type unknown](#class-279-type-unknown)
+- [Class 280: Union types](#class-280-union-types)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -311,4 +312,17 @@ const y = 300
 // console.log(x + y) // ! Error: verification
 
 if (typeof x === 'number') console.log(x + y)
+```
+
+## Class 280: Union types
+```ts
+function addOrConcat(a: number | string, b: number | string): number | string {
+  if (typeof a === 'number' && typeof b === 'number') return a + b
+
+  return `${a}${b}`
+}
+
+console.log(addOrConcat(10, 20))
+console.log(addOrConcat('Leandro', 'Cruz'))
+console.log(addOrConcat(10, 'Cruz'))
 ```
