@@ -206,6 +206,11 @@ console.log(clientData4)
 
 ## Class 276: Type null and undefined
 ### *Undefined*
+| Type       | Return
+|:-----------|:------
+|***undefined*** | value not defined
+|***null*** | intentional absence of any object value
+
 ```ts
 let x
 if (typeof x === 'undefined') x = 10 // Validation
@@ -247,4 +252,17 @@ if (squareOfTwoNumber === null) {
 } else {
   console.log(squareOfTwoNumber)
 }
+```
+
+## Class 277: Type never
+| Type       | Return
+|:-----------|:------
+|***never*** | never return anything
+
+```ts
+function createError(): never {
+  throw new Error('Error loading function')
+}
+
+createError()
 ```
