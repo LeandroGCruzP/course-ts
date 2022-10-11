@@ -8,7 +8,8 @@
 - [Class 275: Type tuple](#class-275-type-tuple)
 - [Class 276: Type null and undefined](#class-276-type-null-and-undefined)
 - [Class 277: Type never](#class-277-type-never)
-- [Class 278: Type enum](#class-277-type-enum)
+- [Class 278: Type enum](#class-278-type-enum)
+- [Class 279: Type unknown](#class-279-type-unknown)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -59,7 +60,7 @@ const sum2: (x:number, y:number) => number = (x, y) => x + y
 
 | Type  | Value
 |:------|:------
-|***any***  | Accept any values
+|***any***  | accept any values
 
 ```ts
 function showMessage(msg: any) {
@@ -292,4 +293,22 @@ function choiceColor(color: Colors): void {
 }
 
 choiceColor(Colors.BROWN)
+```
+
+## Class 279: Type unknown
+| Type       | Return
+|:-----------|:------
+|***unknown*** | accept any values but need verification to use
+
+```ts
+let x: unknown
+
+x = 100
+x = 'Leandro'
+x = 200
+const y = 300
+
+// console.log(x + y) // ! Error: verification
+
+if (typeof x === 'number') console.log(x + y)
 ```
