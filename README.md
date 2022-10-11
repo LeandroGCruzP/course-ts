@@ -7,6 +7,8 @@
 - [Class 274: Type array](#class-274-type-array)
 - [Class 275: Type tuple](#class-275-type-tuple)
 - [Class 276: Type null and undefined](#class-276-type-null-and-undefined)
+- [Class 277: Type never](#class-277-type-never)
+- [Class 278: Type enum](#class-277-type-enum)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -265,4 +267,29 @@ function createError(): never {
 }
 
 createError()
+```
+
+## Class 278: Type enum
+```ts
+enum Colors {
+  RED,
+  BLUE,
+  YELLOW,
+}
+
+enum Colors {
+  GREEN = 'GREEN',
+  BROWN = 100,
+  GRAY = 200,
+}
+
+console.log(Colors)
+console.log(Colors.BLUE)
+console.log(Colors[0])
+
+function choiceColor(color: Colors): void {
+  console.log(Colors[color])
+}
+
+choiceColor(Colors.BROWN)
 ```
