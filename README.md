@@ -11,6 +11,7 @@
 - [Class 278: Type enum](#class-278-type-enum)
 - [Class 279: Type unknown](#class-279-type-unknown)
 - [Class 280: Union types](#class-280-union-types)
+- [Class 281: Literal types](#class-281-literal-types)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -209,12 +210,12 @@ console.log(clientData4)
 ```
 
 ## Class 276: Type null and undefined
-### *Undefined*
 | Type       | Return
 |:-----------|:------
 |***undefined*** | value not defined
 |***null*** | intentional absence of any object value
 
+### *Undefined*
 ```ts
 let x
 if (typeof x === 'undefined') x = 10 // Validation
@@ -326,3 +327,36 @@ console.log(addOrConcat(10, 20))
 console.log(addOrConcat('Leandro', 'Cruz'))
 console.log(addOrConcat(10, 'Cruz'))
 ```
+
+## Class 281: Literal types
+> *Normal type*: Changing value of let
+```ts
+let x = 10
+x = 0b1010
+```
+
+### *Literal types*
+```ts
+const y = 10
+let a: 10 = 10
+let b = 10 as const
+
+const person = {
+  name: 'Leandro' as const,
+  sobrenome: 'Cruz',
+}
+
+// person.name = 'Alexandra' // ! Error: type Alexandra not assignable to type Leandro
+```
+
+> *Other example*: Literal type on function
+```ts
+function selectColor(color: 'Red' | 'Yellow' | 'Blue'): string {
+  return color
+}
+
+console.log(selectColor('Blue'))
+```
+
+
+
