@@ -12,6 +12,7 @@
 - [Class 279: Type unknown](#class-279-type-unknown)
 - [Class 280: Union types](#class-280-union-types)
 - [Class 281: Literal types](#class-281-literal-types)
+- [Class 282: Type alias](#class-282-type-alias)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -356,6 +357,33 @@ function selectColor(color: 'Red' | 'Yellow' | 'Blue'): string {
 }
 
 console.log(selectColor('Blue'))
+```
+
+## Class 282: Type alias
+```ts
+type Age = number
+type ColorRGB = 'Red' | 'Green' | 'Blue'
+type ColorCMYK = 'Ciano' | 'Magenta' | 'Yellow' | 'Black'
+type FavoriteColor = ColorRGB | ColorCMYK
+type Person = {
+  name: string
+  age: Age
+  salary: number
+  favoriteColor?: string
+}
+
+const person: Person = {
+  name: 'Leandro',
+  age: 25,
+  salary: 10_000, // 10000
+}
+
+function setFavoriteColor(person: Person, color: FavoriteColor): Person {
+  return { ...person, favoriteColor: color }
+}
+
+console.log(setFavoriteColor(person, 'Ciano'))
+console.log(person)
 ```
 
 
