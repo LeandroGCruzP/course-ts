@@ -14,6 +14,7 @@
 - [Class 281: Literal types](#class-281-literal-types)
 - [Class 282: Type alias](#class-282-type-alias)
 - [Class 283: Intersection types](#class-283-intersection-types)
+- [Class 284: Function as type](#class-284-function-as-type)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -411,4 +412,25 @@ type AD = 'A' | 'D'
 type Intersection = AB & AC & AD
 ```
 
+## Class 284: Function as type
+```ts
+type MapStringsCallback = (item: string) => string
 
+function mapStrings(array: string[], callbackfn: MapStringsCallback): string[] {
+  const newArray: string[] = []
+
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i]
+
+    newArray.push(callbackfn(item))
+  }
+
+  return newArray
+}
+
+const abc = ['a', 'b', 'c']
+const abcMapped = mapStrings(abc, (item) => item.toUpperCase())
+
+console.log(abc)
+console.log(abcMapped)
+```
