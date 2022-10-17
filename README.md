@@ -13,6 +13,7 @@
 - [Class 280: Union types](#class-280-union-types)
 - [Class 281: Literal types](#class-281-literal-types)
 - [Class 282: Type alias](#class-282-type-alias)
+- [Class 283: Intersection types](#class-283-intersection-types)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -386,5 +387,28 @@ console.log(setFavoriteColor(person, 'Ciano'))
 console.log(person)
 ```
 
+## Class 283: Intersection types
+```ts
+type WithName = { name: string }
+type WithLastName = { lastName: string }
+type WithAge = { age: number }
+type Person = WithName & WithLastName & WithAge
+
+const person: Person = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+console.log(person)
+```
+
+> *Other example*: Result is 'A'
+```ts
+type AB = 'A' | 'B'
+type AC = 'A' | 'C'
+type AD = 'A' | 'D'
+type Intersection = AB & AC & AD
+```
 
 
