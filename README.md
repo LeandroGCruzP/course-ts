@@ -16,6 +16,7 @@
 - [Class 283: Intersection types](#class-283-intersection-types)
 - [Class 284: Function as type](#class-284-function-as-type)
 - [Class 285: Structural type system](#class-285-structural-type-system)
+- [Class 286: Type assertions](#class-286-type-assertions)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -457,4 +458,39 @@ const loggedIn = verifyUser(dbUser, sentUser)
 
 console.log('Logged In:', loggedIn)
 
+```
+
+## Class 286: Type assertions
+> ⚠️ Recommended
+
+> Conditional
+```ts
+const body1 = document.querySelector('body')
+if (body1) body1.style.background = 'red'
+```
+
+> Type assertion
+```ts
+const body3 = document.querySelector('body') as HTMLBodyElement
+body3.style.background = 'red'
+```
+
+> HTMLElement
+```ts
+const input = document.querySelector('.input') as HTMLInputElement
+input.value = 'Create'
+input.focus()
+```
+
+> ⚠️ Not Recommended
+
+> Non-null assertion (!)
+```ts
+const body2 = document.querySelector('body')!
+body2.style.background = 'red'
+```
+
+> Type assertion
+```ts
+const body4 = document.querySelector('body') as unknown as number
 ```
