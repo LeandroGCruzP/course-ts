@@ -7,7 +7,7 @@ let b = 10 as const // eslint-disable-line
 
 const person = {
   name: 'Leandro' as const,
-  sobrenome: 'Cruz',
+  lastName: 'Cruz',
 }
 
 // person.name = 'Alexandra' // ! Error: type Alexandra not assignable to type Leandro

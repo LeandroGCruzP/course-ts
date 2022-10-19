@@ -15,6 +15,7 @@
 - [Class 282: Type alias](#class-282-type-alias)
 - [Class 283: Intersection types](#class-283-intersection-types)
 - [Class 284: Function as type](#class-284-function-as-type)
+- [Class 285: Structural type system](#class-285-structural-type-system)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -346,7 +347,7 @@ let b = 10 as const
 
 const person = {
   name: 'Leandro' as const,
-  sobrenome: 'Cruz',
+  lastName: 'Cruz',
 }
 
 // person.name = 'Alexandra' // ! Error: type Alexandra not assignable to type Leandro
@@ -433,4 +434,27 @@ const abcMapped = mapStrings(abc, (item) => item.toUpperCase())
 
 console.log(abc)
 console.log(abcMapped)
+```
+
+## Class 285: Structural type system
+> ⚠️ Inferred type (dbUser, sentUser) must respect the content of the type identity (type User)
+```ts
+type VerifyUserFn = (user: User, sentValue: User) => boolean
+type User = {
+  username: string
+  password: string
+}
+
+const verifyUser: VerifyUserFn = (user, sentValue) => {
+  return (
+    user.username === sentValue.username && user.password === sentValue.password
+  )
+}
+
+const dbUser = { username: 'Leandro', password: '123456' }
+const sentUser = { username: 'Leandro', password: '123456', permissions: '' }
+const loggedIn = verifyUser(dbUser, sentUser)
+
+console.log('Logged In:', loggedIn)
+
 ```
