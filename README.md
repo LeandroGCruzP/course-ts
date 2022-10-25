@@ -18,6 +18,7 @@
 - [Class 285: Structural type system](#class-285-structural-type-system)
 - [Class 286: Type assertions](#class-286-type-assertions)
 - [Class 311: Type guard](#class-311-type-guard)
+- [Class 312: Typeof and Keyof](#class-312-typeof-and-keyof)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -536,4 +537,24 @@ function showName(obj: PersonOrAnimal) {
 }
 
 showName({ name: 'Leandro' })
+```
+
+## Class 312: Typeof and Keyof
+```ts
+type ColorsObj = typeof colorsObj
+type ColorKeys = keyof ColorsObj
+
+const colorsObj = {
+  red: 'vermelho',
+  green: 'verde',
+  blue: 'azul',
+}
+
+function translateColors(color: ColorKeys, colors: ColorsObj): string {
+  return colors[color]
+}
+
+console.log(translateColors('red', colorsObj))
+console.log(translateColors('green', colorsObj))
+console.log(translateColors('blue', colorsObj))
 ```
