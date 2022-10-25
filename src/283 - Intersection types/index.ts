@@ -16,4 +16,16 @@ type AC = 'A' | 'C'
 type AD = 'A' | 'D'
 type Intersection = AB & AC & AD
 
-export { person }
+// Extends with interface
+
+interface Person2 extends WithName, WithLastName, WithAge {}
+
+const person2: Person2 = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+console.log(person2)
+
+export { person, person2 }

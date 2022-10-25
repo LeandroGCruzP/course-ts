@@ -414,6 +414,23 @@ type AD = 'A' | 'D'
 type Intersection = AB & AC & AD
 ```
 
+> *Other example*: Using extends of interface
+```ts
+// Extends with interface
+
+interface Person extends WithName, WithLastName, WithAge {}
+
+const person: Person = {
+  name: 'Alexandra',
+  lastName: 'Laroca',
+  age: 23,
+}
+
+console.log(person)
+
+export { person, person2 }
+```
+
 ## Class 284: Function as type
 ```ts
 type MapStringsCallback = (item: string) => string
