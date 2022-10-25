@@ -17,6 +17,7 @@
 - [Class 284: Function as type](#class-284-function-as-type)
 - [Class 285: Structural type system](#class-285-structural-type-system)
 - [Class 286: Type assertions](#class-286-type-assertions)
+- [Class 311: Type guard](#class-311-type-guard)
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -183,7 +184,7 @@ console.log(fullName2)
 
 ## Class 275: Type tuple
 ```ts
-const clientData1: [number, string] = [1, 'Alexandra']
+const clientData1: [number, string] = [1, 'Alexandra'] 👈
 
 clientData1[0] = 100
 
@@ -191,7 +192,7 @@ console.log(clientData1)
 ```
 > *Other example*: Immutable tuple
 ```ts
-const clientData2: readonly [number, string, string] = [2, 'Alexandra', 'Laroca']
+const clientData2: readonly [number, string, string] = [2, 'Alexandra', 'Laroca'] 👈
 
 // clientData1[0] = 100 // ! ERROR: readonly
 // clientData1.pop() // ! ERROR: readonly
@@ -395,7 +396,7 @@ console.log(person)
 type WithName = { name: string }
 type WithLastName = { lastName: string }
 type WithAge = { age: number }
-type Person = WithName & WithLastName & WithAge
+type Person = WithName & WithLastName & WithAge 👈
 
 const person: Person = {
   name: 'Leandro',
@@ -411,7 +412,7 @@ console.log(person)
 type AB = 'A' | 'B'
 type AC = 'A' | 'C'
 type AD = 'A' | 'D'
-type Intersection = AB & AC & AD
+type Intersection = AB & AC & AD 👈
 ```
 
 > *Other example*: Using extends of interface
@@ -488,13 +489,13 @@ if (body1) body1.style.background = 'red'
 
 > Type assertion
 ```ts
-const body3 = document.querySelector('body') as HTMLBodyElement
+const body3 = document.querySelector('body') as HTMLBodyElement 👈
 body3.style.background = 'red'
 ```
 
 > HTMLElement
 ```ts
-const input = document.querySelector('.input') as HTMLInputElement
+const input = document.querySelector('.input') as HTMLInputElement 👈
 input.value = 'Create'
 input.focus()
 ```
@@ -510,4 +511,29 @@ body2.style.background = 'red'
 > Type assertion
 ```ts
 const body4 = document.querySelector('body') as unknown as number
+```
+
+## Class 311: Type guard
+```ts
+export function add(a: unknown, b: unknown): number | string {
+  if (typeof a === 'number' && typeof b === 'number') return a + b 👈
+
+  return `${a}${b}`
+}
+
+console.log(add(1, 2))
+console.log(add('a', 'b'))
+```
+
+> *Other example*
+```ts
+type Person = { name: string }
+type Animal = { color: string }
+type PersonOrAnimal = Person | Animal
+
+function showName(obj: PersonOrAnimal) {
+  if ('name' in obj) console.log(obj.name) 👈
+}
+
+showName({ name: 'Leandro' })
 ```
