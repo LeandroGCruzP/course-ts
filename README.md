@@ -1,5 +1,8 @@
 # TypeScript Course
 
+<details>
+<summary><b>Expand Table of Contents</b></summary>
+
 - [Class 270: Type annotation](#class-270-type-annotation)
 - [Class 271: Type any](#class-271-type-any)
 - [Class 272: Type void](#class-272-type-void)
@@ -19,6 +22,9 @@
 - [Class 286: Type assertions](#class-286-type-assertions)
 - [Class 311: Type guard](#class-311-type-guard)
 - [Class 312: Typeof and Keyof](#class-312-typeof-and-keyof)
+</details>
+
+---
 
 ## Class 270: Type annotation
 ### *Basic types*
@@ -64,6 +70,8 @@ function sum(x: number, y: number): number {
 const sum2: (x:number, y:number) => number = (x, y) => x + y
 ```
 
+---
+
 ## Class 271: Type any
 > ⚠️ Use any as a last resort
 
@@ -80,6 +88,8 @@ console.log(showMessage([1, 2, 3]))
 console.log(showMessage('Hi'))
 console.log(showMessage(1))
 ```
+
+---
 
 ## Class 272: Type void
 | Type  | Return
@@ -107,6 +117,8 @@ const person = {
 
 person.displayName()
 ```
+
+---
 
 ## Class 273: Type object
 > ℹ️ Object does not have autocomplete
@@ -143,6 +155,8 @@ console.log('ObjectB', ObjectB)
 | Prefix    | Description
 |:----------|:-----------
 |***readonly*** | Does not allow changing the value of an object or array
+
+---
 
 ## Class 274: Type array
 ```ts
@@ -183,6 +197,8 @@ console.log(fullName1)
 console.log(fullName2)
 ```
 
+---
+
 ## Class 275: Type tuple
 ```ts
 const clientData1: [number, string] = [1, 'Alexandra'] 👈
@@ -215,6 +231,8 @@ const clientData4: [number, ...string[]] = [3, 'Alexandra', 'Laroca']
 
 console.log(clientData4)
 ```
+
+---
 
 ## Class 276: Type null and undefined
 | Type       | Return
@@ -266,6 +284,8 @@ if (squareOfTwoNumber === null) {
 }
 ```
 
+---
+
 ## Class 277: Type never
 | Type       | Return
 |:-----------|:------
@@ -278,6 +298,8 @@ function createError(): never {
 
 createError()
 ```
+
+---
 
 ## Class 278: Type enum
 ```ts
@@ -304,6 +326,8 @@ function choiceColor(color: Colors): void {
 choiceColor(Colors.BROWN)
 ```
 
+---
+
 ## Class 279: Type unknown
 | Type       | Return
 |:-----------|:------
@@ -322,6 +346,8 @@ const y = 300
 if (typeof x === 'number') console.log(x + y)
 ```
 
+---
+
 ## Class 280: Union types
 ```ts
 function addOrConcat(a: number | string, b: number | string): number | string {
@@ -334,6 +360,8 @@ console.log(addOrConcat(10, 20))
 console.log(addOrConcat('Leandro', 'Cruz'))
 console.log(addOrConcat(10, 'Cruz'))
 ```
+
+---
 
 ## Class 281: Literal types
 > *Normal type*: Changing value of let
@@ -365,6 +393,8 @@ function selectColor(color: 'Red' | 'Yellow' | 'Blue'): string {
 console.log(selectColor('Blue'))
 ```
 
+---
+
 ## Class 282: Type alias
 ```ts
 type Age = number
@@ -391,6 +421,8 @@ function setFavoriteColor(person: Person, color: FavoriteColor): Person {
 console.log(setFavoriteColor(person, 'Ciano'))
 console.log(person)
 ```
+
+---
 
 ## Class 283: Intersection types
 ```ts
@@ -433,6 +465,8 @@ console.log(person)
 export { person, person2 }
 ```
 
+---
+
 ## Class 284: Function as type
 ```ts
 type MapStringsCallback = (item: string) => string
@@ -456,6 +490,8 @@ console.log(abc)
 console.log(abcMapped)
 ```
 
+---
+
 ## Class 285: Structural type system
 > ⚠️ Inferred type (dbUser, sentUser) must respect the content of the type identity (type User)
 ```ts
@@ -478,6 +514,8 @@ const loggedIn = verifyUser(dbUser, sentUser)
 console.log('Logged In:', loggedIn)
 
 ```
+
+---
 
 ## Class 286: Type assertions
 > ⚠️ Recommended
@@ -514,6 +552,8 @@ body2.style.background = 'red'
 const body4 = document.querySelector('body') as unknown as number
 ```
 
+---
+
 ## Class 311: Type guard
 ```ts
 export function add(a: unknown, b: unknown): number | string {
@@ -538,6 +578,8 @@ function showName(obj: PersonOrAnimal) {
 
 showName({ name: 'Leandro' })
 ```
+
+---
 
 ## Class 312: Typeof and Keyof
 ```ts
