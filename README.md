@@ -24,6 +24,7 @@
 - [Class 312: Typeof and Keyof](#class-312-typeof-and-keyof)
 - [Class 313: Keys like type](#class-313-keys-like-type)
 - [Class 315: Overload function](#class-315-overload-function)
+- [Class 316: Optional chaining and Null coalescence operator](#class-316-optional-chaining-and-null-coalescence-operator)
 </details>
 
 ---
@@ -623,9 +624,6 @@ const car: Car = {
   year: 2022,
   name: 'Ford K',
 }
-
-export { car }
-
 ```
 
 ---
@@ -647,4 +645,27 @@ const adder: Adder = (x: number, y?: number, ...args: number[]) => {
 console.log(adder(1))
 console.log(adder(1, 2))
 console.log(adder(1, 2, 3))
+```
+
+---
+
+## Class 316: Optional chaining and Null coalescence operator
+```ts
+type Doc = {
+  title: string
+  text: string
+  date?: Date
+}
+
+const doc: Doc = {
+  title: 'My title',
+  text: 'My text',
+}
+
+// console.log(doc.date.toString()) // ! Throw Error
+console.log(doc.date?.toString()) // Optional chaining 👈
+console.log(doc.date?.toString() ?? 'No date to show') // Null coalescence operator 👈
+console.log(undefined ?? 'No date to show') // Null coalescence operator
+console.log(null ?? 'No date to show') // Null coalescence operator
+
 ```
