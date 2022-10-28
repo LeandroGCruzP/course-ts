@@ -22,6 +22,7 @@
 - [Class 286: Type assertions](#class-286-type-assertions)
 - [Class 311: Type guard](#class-311-type-guard)
 - [Class 312: Typeof and Keyof](#class-312-typeof-and-keyof)
+- [Class 313: Keys like type](#class-313-keys-like-type)
 </details>
 
 ---
@@ -599,4 +600,29 @@ function translateColors(color: ColorKeys, colors: ColorsObj): string {
 console.log(translateColors('red', colorsObj))
 console.log(translateColors('green', colorsObj))
 console.log(translateColors('blue', colorsObj))
+```
+
+---
+
+## Class 313: Keys like type
+```ts
+type Vehicle = {
+  brand: string
+  year: number
+}
+
+type Car = {
+  brand: Vehicle['brand'] 👈
+  year: Vehicle['year'] 👈
+  name: string
+}
+
+const car: Car = {
+  brand: 'Ford',
+  year: 2022,
+  name: 'Ford K',
+}
+
+export { car }
+
 ```
