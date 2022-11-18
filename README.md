@@ -26,6 +26,7 @@
 - [Class 315: Overload function](#class-315-overload-function)
 - [Class 316: Optional chaining and Null coalescence operator](#class-316-optional-chaining-and-null-coalescence-operator)
 - [Class 317: Generics](#class-317-generics)
+- [Class 318: Array and promises is generic](#class-318-array-and-promises-is-generic)
 </details>
 
 ---
@@ -702,4 +703,31 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const customFilterArray = myFilter(numbers, (value) => value < 5)
 
 console.log(customFilterArray)
+```
+
+## Class 318: Array and promises is generic
+> Using inference type on Promise
+```ts
+const arrayNumbers: Array<number> = [1, 2, 3, 4, 5, 6]
+
+async function promiseAsync() {
+  return 1
+}
+
+promiseAsync().then((result) => console.log(result + 1))
+```
+
+> Creating custom type with generic
+```ts
+const arrayNumbers: Array<number> = [1, 2, 3, 4, 5, 6]
+
+function customPromise(): Promise<CustomPromise> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1)
+    }, 1000)
+  })
+}
+
+customPromise().then((result) => console.log(result + 1))
 ```
