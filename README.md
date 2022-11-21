@@ -27,6 +27,7 @@
 - [Class 316: Optional chaining and Null coalescence operator](#class-316-optional-chaining-and-null-coalescence-operator)
 - [Class 317: Generics](#class-317-generics)
 - [Class 318: Array and promises is generic](#class-318-array-and-promises-is-generic)
+- [Class 319: Generics with interface and type alias](#class-319-generics-with-interface-and-type-alias)
 </details>
 
 ---
@@ -730,4 +731,50 @@ function customPromise(): Promise<CustomPromise> {
 }
 
 customPromise().then((result) => console.log(result + 1))
+```
+
+## Class 319: Generics with interface and type alias
+```ts
+interface ProtocolPerson<T, U> {
+  name: T
+  lastName: T
+  age: U
+}
+
+// type ProtocolPerson<T, U> = {
+//   name: T
+//   lastName: T
+//   age: U
+// }
+
+const student: ProtocolPerson<string, number> = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+console.log(student)
+```
+
+```ts
+interface ProtocolPerson<T = string, U = number> {
+  name: T
+  lastName: T
+  age: U
+}
+
+const student1: ProtocolPerson = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+const student2: ProtocolPerson<string, string> = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: '25',
+}
+
+console.log(student1)
+console.log(student2)
 ```
