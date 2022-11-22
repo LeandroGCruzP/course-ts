@@ -28,6 +28,7 @@
 - [Class 317: Generics](#class-317-generics)
 - [Class 318: Array and promises is generic](#class-318-array-and-promises-is-generic)
 - [Class 319: Generics with interface and type alias](#class-319-generics-with-interface-and-type-alias)
+- [Class 320: Restriction generic](#class-320-restriction-generic)
 </details>
 
 ---
@@ -735,7 +736,7 @@ customPromise().then((result) => console.log(result + 1))
 
 ## Class 319: Generics with interface and type alias
 ```ts
-interface ProtocolPerson<T, U> {
+interface ProtocolPerson<T, U> { 👈
   name: T
   lastName: T
   age: U
@@ -757,7 +758,7 @@ console.log(student)
 ```
 
 ```ts
-interface ProtocolPerson<T = string, U = number> {
+interface ProtocolPerson<T = string, U = number> { 👈
   name: T
   lastName: T
   age: U
@@ -777,4 +778,24 @@ const student2: ProtocolPerson<string, string> = {
 
 console.log(student1)
 console.log(student2)
+```
+
+## Class 320: Restriction generic
+```ts
+type GetKeysFn = <O, K extends keyof O>(obj: O, key: K) => O[K] 👈
+
+const getKeys: GetKeysFn = (obj, key) => obj[key]
+
+const animal = {
+  color: 'Black',
+  vaccine: ['vaccine 1', 'vaccine 2'],
+  age: 8,
+}
+
+const vaccines = getKeys(animal, 'vaccine')
+const color = getKeys(animal, 'color')
+const age = getKeys(animal, 'age')
+
+console.log(vaccines, color, age)
+
 ```
