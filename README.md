@@ -30,6 +30,7 @@
 - [Class 319: Generics with interface and type alias](#class-319-generics-with-interface-and-type-alias)
 - [Class 320: Restriction generic](#class-320-restriction-generic)
 - [Class 322: Generics with intersection](#class-322-generics-with-intersection)
+- [Class 323: Type predicate](#class-323-type-predicate)
 </details>
 
 ---
@@ -813,5 +814,30 @@ const obj2 = { key2: 'value2' }
 const join = joinObjects(obj1, obj2)
 
 console.log(join)
+
+```
+
+## Class 323: Type predicate
+```ts
+export function isNumber(value: unknown): value is number { 👈
+  return typeof value === 'number'
+}
+
+export function sum<T>(...args: T[]): number {
+  const functionReturn = args.reduce((sum, value) => {
+    if (isNumber(sum) && isNumber(value)) {
+      return sum + value
+    }
+
+    return sum
+  }, 0)
+
+  return functionReturn
+}
+
+console.log(isNumber(123))
+console.log(isNumber('asd'))
+console.log(sum(1, 2, 3))
+console.log(sum(...[1, 2, 3, 'a', 'b', 'c', 1]))
 
 ```
