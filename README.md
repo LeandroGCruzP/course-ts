@@ -29,6 +29,7 @@
 - [Class 318: Array and promises is generic](#class-318-array-and-promises-is-generic)
 - [Class 319: Generics with interface and type alias](#class-319-generics-with-interface-and-type-alias)
 - [Class 320: Restriction generic](#class-320-restriction-generic)
+- [Class 322: Generics with intersection](#class-322-generics-with-intersection)
 </details>
 
 ---
@@ -797,5 +798,20 @@ const color = getKeys(animal, 'color')
 const age = getKeys(animal, 'age')
 
 console.log(vaccines, color, age)
+
+```
+
+## Class 322: Generics with intersection
+```ts
+export function joinObjects<O, P>(obj1: O, obj2: P): O & P {
+  // return { ...obj1, ...obj2 }
+  return Object.assign({}, obj1, obj2)
+}
+
+const obj1 = { key1: 'value1' }
+const obj2 = { key2: 'value2' }
+const join = joinObjects(obj1, obj2)
+
+console.log(join)
 
 ```
