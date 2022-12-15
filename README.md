@@ -31,6 +31,7 @@
 - [Class 320: Restriction generic](#class-320-restriction-generic)
 - [Class 322: Generics with intersection](#class-322-generics-with-intersection)
 - [Class 323: Type predicate](#class-323-type-predicate)
+- [Class 324: Default generics](#class-324-default-generics)
 </details>
 
 ---
@@ -839,5 +840,98 @@ console.log(isNumber(123))
 console.log(isNumber('asd'))
 console.log(sum(1, 2, 3))
 console.log(sum(...[1, 2, 3, 'a', 'b', 'c', 1]))
+```
 
+## Class 324: Default generics
+
+Types with generic |
+:------------------
+Record
+Required
+Partial
+Readonly
+Pick
+Omit
+Exclude
+Extract
+
+
+```ts
+// Record
+export const objectA: Record<string, string | number> = {
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+type PersonProtocol = {
+  name?: string
+  lastName?: string
+  age?: number
+}
+
+// Required
+type PersonRequired = Required<PersonProtocol>
+// Partial
+type PersonPartial = Partial<PersonRequired>
+// Readonly
+type PersonReadOnly = Readonly<PersonRequired>
+// Pick
+type PersonPick = Pick<PersonRequired, 'name' | 'lastName'>
+// Omit
+type PersonOmit = Omit<PersonRequired, 'age'>
+
+type ABC = 'A' | 'B' | 'C'
+type CDE = 'C' | 'D' | 'E'
+
+// Exclude & Extract
+type TypeExclude = Exclude<ABC, CDE>
+type TypeExtract = Extract<ABC, CDE>
+
+export type {
+  PersonPartial,
+  PersonReadOnly,
+  PersonPick,
+  PersonOmit,
+  TypeExclude,
+  TypeExtract,
+}
+```
+
+> Example converting data received by API Mongo to custom type
+```ts
+type AccountMongo = {
+  _id: string
+  name: string
+  lastName: string
+  age: number
+}
+
+const accountMongo: AccountMongo = {
+  _id: 'as76da67sd5as7d7',
+  name: 'Leandro',
+  lastName: 'Cruz',
+  age: 25,
+}
+
+type AccountAPI = Pick<AccountMongo, Exclude<keyof AccountMongo, '_id'>> & {
+  id: string
+}
+
+// type AccountAPI = Pick<AccountMongo, 'name' | 'lastName' | 'age'> & {
+//   id: string
+// }
+
+// type AccountAPI = Omit<AccountMongo, '_id'> & {
+//   id: string
+// }
+
+function mapAccount(accountMongo: AccountMongo): AccountAPI {
+  const { _id, ...accountData } = accountMongo
+
+  return { ...accountData, id: _id }
+}
+
+const accountApi = mapAccount(accountMongo)
+console.log(accountApi)
 ```
